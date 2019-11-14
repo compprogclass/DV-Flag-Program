@@ -1,0 +1,52 @@
+use Libraries.Game.Game
+use Libraries.Game.InputMonitor
+use Libraries.Interface.Events.KeyboardEvent
+use Libraries.Game.Graphics.Drawable
+use Libraries.Game.Graphics.Color
+
+
+class Main is Game
+InputMonitor monitor
+KeyboardEvent keys
+Drawable redpart
+Drawable stripe1
+Drawable stripe2
+Drawable bluepart
+Color color
+
+number currentx = redpart:GetGlobalX()
+number currenty = redpart:GetGlobalY()
+number speed = 1
+
+    action Main
+        StartGame()
+    end
+
+    action CreateGame
+        redpart:LoadFilledRectangle(500,400,color:Red())
+        redpart:Add(stripe1)
+        redpart:Add(stripe2)
+        
+        stripe1:SetPosition(0,20)
+        stripe1:LoadFilledRectangle(500,30,color:White())
+
+        stripe2:SetPosition(0,100)
+        stripe2:LoadFilledRectangle(500,30,color:White())
+
+        bluepart:LoadFilledRectangle(250,100,color:Blue())
+        bluepart:SetPosition(0,redpart:GetHeight()-bluepart:GetHeight())
+        redpart:Add(bluepart)
+
+        
+        Add(redpart)
+    end
+
+    action Update(number seconds)
+        if monitor:IsKeyPressed(keys:ESCAPE)
+            Exit()
+        end
+        if monitor:IsKeyPressed(keys:W)
+            
+        end
+    end
+end
